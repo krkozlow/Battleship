@@ -1,14 +1,15 @@
 ﻿using System;
-using Battleship.Core.Application.Domain;
+using Battleship.Core.Domain.Entities;
+using Battleship.Core.Domain.ValueObjects;
 
-namespace Battleship.Api.Model.Domain
+namespace Battleship.Core.Domain
 {
     public class PlayerBuilder : IPlayerBuilder
     {
         private string _playerName;
         private Guid _playerId;
         private Player _player;
-        
+
         public Player Build()
         {
             return _player;

@@ -1,7 +1,7 @@
-﻿using battleship_app.Model.Entities;
+﻿using Battleship.Core.Domain.Entities;
 using System.Security.Cryptography.Xml;
 
-namespace Battleship.Core.Application.Domain
+namespace Battleship.Core.Domain
 {
     public interface IGameFactory
     {

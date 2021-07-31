@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Battleship.Core.Domain;
+using Battleship.Core.Domain.ValueObjects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

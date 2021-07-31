@@ -1,9 +1,8 @@
-﻿using Battleship.Core.Application.Domain;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace battleship_app.Model.Entities
+namespace Battleship.Core.Domain.Entities
 {
     public class Game
     {

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Battleship.Core.Domain.ValueObjects;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Battleship.Core.Application.Domain
+namespace Battleship.Core.Domain.Entities
 {
     public class Player
     {
@@ -11,7 +12,7 @@ namespace Battleship.Core.Application.Domain
         private readonly Guid _id;
         private readonly Grid _grid;
         private readonly IList<Ship> _ships;
-        
+
         public Player(Guid id, string name, Grid grid)
         {
             _id = id;
@@ -26,7 +27,7 @@ namespace Battleship.Core.Application.Domain
             {
                 throw new PlayerFailedToAddShipException();
             }
-            
+
             _ships.Add(ship);
         }
 
@@ -52,7 +53,7 @@ namespace Battleship.Core.Application.Domain
         {
             return _id;
         }
-        
+
         private bool ShipIsInGrid(Ship ship)
         {
             var shipCoordinates = ship.GetCoordaintes();
@@ -68,6 +69,6 @@ namespace Battleship.Core.Application.Domain
 
     public class PlayerFailedToAddShipException : Exception
     {
-        
+
     }
 }

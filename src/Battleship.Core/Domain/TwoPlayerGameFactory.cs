@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Battleship.Api.Model.Domain;
-using battleship_app.Model.Entities;
+using Battleship.Core.Domain.Entities;
+using Battleship.Core.Domain.ValueObjects;
 
-namespace Battleship.Core.Application.Domain
+namespace Battleship.Core.Domain
 {
     public class TwoPlayerGameFactory : IGameFactory
     {
@@ -16,7 +16,7 @@ namespace Battleship.Core.Application.Domain
         {
             _squareGenerator = squareGenerator;
         }
-        
+
         public Game Create(int sizeX, int sizeY)
         {
             var firstPlayer = CreatePlayerBuiler("First player", 10, 10).Build();
@@ -25,7 +25,7 @@ namespace Battleship.Core.Application.Domain
             return new Game
             {
                 Id = Guid.NewGuid(),
-                Players = new List<Player>{ firstPlayer, secondPlayer }
+                Players = new List<Player> { firstPlayer, secondPlayer }
             };
         }
 
@@ -36,7 +36,7 @@ namespace Battleship.Core.Application.Domain
             return new PlayerBuilder()
                 .AddPlayer(playerId, playerName)
                 .AddGrid(sizeX, sizeY)
-                .AddShip(new Battleship(shipPoints[0].Item1, shipPoints[0].Item2, shipPoints[0].Item3))
+                .AddShip(new ValueObjects.Battleship(shipPoints[0].Item1, shipPoints[0].Item2, shipPoints[0].Item3))
                 .AddShip(new Carrier(shipPoints[1].Item1, shipPoints[1].Item2, shipPoints[1].Item3))
                 .AddShip(new Destroyer(shipPoints[2].Item1, shipPoints[2].Item2, shipPoints[2].Item3))
                 .AddShip(new Cruiser(shipPoints[3].Item1, shipPoints[3].Item2, shipPoints[3].Item3))

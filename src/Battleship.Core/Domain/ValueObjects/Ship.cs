@@ -10,7 +10,7 @@ using System.Linq;
     4	Submarine	3
     5	Destroyer 2
 */
-namespace Battleship.Core.Application.Domain
+namespace Battleship.Core.Domain.ValueObjects
 {
     public abstract class Ship
     {
@@ -18,9 +18,9 @@ namespace Battleship.Core.Application.Domain
 
         public ShipState State { get; protected set; }
         public int Size { get; protected set; }
-        
+
         public int InitX { get; protected set; }
-        
+
         public int InitY { get; protected set; }
 
         public IEnumerable<(int, int)> GetCoordaintes()
@@ -57,7 +57,7 @@ namespace Battleship.Core.Application.Domain
 
             throw new ArgumentException();
         }
-        
+
         public (int, int) GetMinCoordinates()
         {
             if (Direction == ShipDirection.Horizontal)
@@ -68,7 +68,7 @@ namespace Battleship.Core.Application.Domain
             {
                 return GetCoordaintes().OrderByDescending(x => x.Item2).First();
             }
-            
+
             throw new ArgumentException();
         }
     }
@@ -83,7 +83,7 @@ namespace Battleship.Core.Application.Domain
             Size = 2;
         }
     }
-    
+
     public class Destroyer : Ship
     {
         public Destroyer(ShipDirection direction, int initX, int initY)
@@ -103,7 +103,7 @@ namespace Battleship.Core.Application.Domain
             InitY = initY;
             Direction = direction;
             Size = 2;
-        }   
+        }
     }
 
     public class Submarine : Ship
@@ -127,7 +127,7 @@ namespace Battleship.Core.Application.Domain
             Size = 2;
         }
     }
-    
+
     public enum ShipDirection
     {
         Horizontal,

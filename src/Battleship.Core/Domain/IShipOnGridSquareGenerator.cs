@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Battleship.Core.Domain.ValueObjects;
+using System;
 
-namespace Battleship.Core.Application.Domain
+namespace Battleship.Core.Domain
 {
     public interface IShipOnGridSquareGenerator
     {

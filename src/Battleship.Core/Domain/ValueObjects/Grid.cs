@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace Battleship.Core.Application.Domain
+namespace Battleship.Core.Domain.ValueObjects
 {
     public class Grid
     {
@@ -13,23 +13,23 @@ namespace Battleship.Core.Application.Domain
         public Grid(int sizeX, int sizeY)
         {
             Guard(sizeX, sizeY);
-            
+
             _sizeX = sizeX;
             _sizeY = sizeY;
-            _squares = new SquareState[_sizeX,_sizeY];
+            _squares = new SquareState[_sizeX, _sizeY];
         }
-        
+
         public SquareState this[int x, int y]
         {
-            get { return _squares[x,y]; }
-            set { _squares[x,y] = value; }
+            get { return _squares[x, y]; }
+            set { _squares[x, y] = value; }
         }
 
         public (int, int) GetGridSize()
         {
             return (_sizeX, _sizeY);
         }
-        
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -64,6 +64,6 @@ namespace Battleship.Core.Application.Domain
 
     public class InvalidGridException : Exception
     {
-        
+
     }
 }
