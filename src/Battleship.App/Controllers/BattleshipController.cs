@@ -1,14 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using Battleship.Core.Domain.ValueObjects;
 using battleship_app.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace battleship_app.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class BattleshipController
     {
         [HttpPost("StartGame")]
-        public IActionResult StartGame([FromQuery] int sizeX, [FromQuery] int sizeY)
+        public PlayersModel StartGame([FromQuery] int sizeX, [FromQuery] int sizeY)
         {
             var firstPlayer = new PlayerModel
             {
@@ -16,13 +19,15 @@ namespace battleship_app.Controllers
                 Name = "First player",
                 Grid = new GridModel
                 {
-                    Squares = new[,]
+                    SizeX = 10,
+                    SizeY = 10,
+                    Squares = new[]
                     {
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
                     }
                 }
             };
@@ -33,25 +38,27 @@ namespace battleship_app.Controllers
                 Name = "First player",
                 Grid = new GridModel
                 {
-                    Squares = new[,]
+                    SizeX = 10,
+                    SizeY = 10,
+                    Squares = new[]
                     {
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
                     }
                 }
             };
 
-            return new OkObjectResult(new PlayersModel
+            return new PlayersModel
             {
                 Players = new []
                 {
                     firstPlayer,
                     secondPlayer
                 }
-            });
+            };
         }
 
         [HttpPut("Shoot")]
@@ -63,13 +70,15 @@ namespace battleship_app.Controllers
                 Name = "First player",
                 Grid = new GridModel
                 {
-                    Squares = new [,]
+                    SizeX = 10,
+                    SizeY = 10,
+                    Squares = new[]
                     {
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        {SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
+                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
                     }
                 }
             });

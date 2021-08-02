@@ -16,7 +16,9 @@ namespace Battleship.Core.Domain.ValueObjects
     {
         public ShipDirection Direction { get; protected set; }
 
+
         public ShipState State { get; protected set; }
+        
         public int Size { get; protected set; }
 
         public int InitX { get; protected set; }

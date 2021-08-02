@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import Grid from './components/Grid'
+import Game from './components/Game'
 import './custom.css'
 
-export default class App extends Component {
-  static displayName = App.name;
-
-  render () {
+function App() {
     return (
-        <Grid />
+        <Game />
     );
-  }
 }
+
+export default App;

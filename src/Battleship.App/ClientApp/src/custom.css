@@ -1,14 +1,47 @@
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
+.game {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  padding-top: 25px;
 }
 
-code {
-  color: #E01A76;
+.title {
+  text-align: center;
+  padding-top: 50px;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+.player-board {
+  align-self: center;
+}
+
+.grid-container {
+  width: 400px;
+  height: 400px;
+  border: 2px solid;
+  margin: 1em 2em 2em 1em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid-container div {
+  width: 10%;
+  height: 10%;
+  box-sizing: border-box;
+  border: 1px solid;
+  transition: background-color 100ms ease-in-out;
+}
+
+.square {
+}
+
+.square-missed {
+  background-color: darkblue;
+}
+
+.square-ontarget {
+  background-color: crimson;
+}
+
+.square-empty {
+  background-color: azure;
 }

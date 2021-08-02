@@ -24,6 +24,9 @@ namespace battleship_app.DTOs
 
     public class GridModel
     {
-        public SquareState[,] Squares { get; set; }
+        public int SizeX { get; set; }
+
+        public int SizeY { get; set; }
+        public SquareState[][] Squares { get; set; }
     }
 }

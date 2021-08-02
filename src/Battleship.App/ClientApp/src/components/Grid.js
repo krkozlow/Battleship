@@ -1,20 +1,25 @@
 ﻿import React, { Component } from 'react';
+import Square from "./Square";
 
 function Grid(props) {
-    const [players, setPlayers] = React.useState(null);
+    let gridToRender = [];
+    if(props.squares) {
+        gridToRender = props.squares.map((row, i) => {
+            let toReturn = row.map((square, j) => {
+                return <Square key={i + "_" + j} squareState={square} />
+            })
 
-    React.useEffect(() => {
-        fetch('battleship')
-            .then(results => results.json())
-            .then(data => {
-                const {players} = data.results;
-                setPlayers(players);
-            });
-    }, []);
-    return (
-        <div>
-        </div>
-    );
+            return toReturn;
+        })
+        console.log(gridToRender)
+        }
+        return (
+            <div className="grid-container">
+                {
+                    gridToRender
+                }
+            </div>
+        )
 }
 
 export default Grid;
