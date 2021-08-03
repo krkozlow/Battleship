@@ -8,7 +8,7 @@ Simply battleship game project that mimic two *AI* player.\
 Game state is store on server side.\
 Client side predict *shoot* point and display grid with user context\
 
-#####Game flow
+![Game flow](./assets/flow.PNG)
 
 Features
  - Generate game context
