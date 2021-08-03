@@ -19,6 +19,7 @@ To be implemented:
  - Handle game over event
  - Dummy *AI* shoot algorithm should be replace with sth smarter
  - Assign ships to grid y axis is hardcoded
+ - add persistance layer, remove singleton registrations
  - Shoot cannot be duplicates
  - Remove hardcoded/magic numbers data.
  - Add more UTs
@@ -34,7 +35,7 @@ $ dotnet new react
 To run this project:
 
 ```
-$ cd ../src/Battleship.App
+$ cd ./src/Battleship.App
 $ dotnet run
 ```
 First run might take some time cause *npm install*\
