@@ -82,7 +82,7 @@ namespace Battleship.Core.Domain.ValueObjects
             InitX = initX;
             InitY = initY;
             Direction = direction;
-            Size = 2;
+            Size = 4;
         }
     }
 
@@ -115,7 +115,7 @@ namespace Battleship.Core.Domain.ValueObjects
             InitX = initX;
             InitY = initY;
             Direction = direction;
-            Size = 2;
+            Size = 3;
         }
     }
 
@@ -126,7 +126,7 @@ namespace Battleship.Core.Domain.ValueObjects
             InitX = initX;
             InitY = initY;
             Direction = direction;
-            Size = 2;
+            Size = 5;
         }
     }
 

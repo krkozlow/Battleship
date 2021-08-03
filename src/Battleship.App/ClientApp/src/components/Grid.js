@@ -2,24 +2,26 @@
 import Square from "./Square";
 
 function Grid(props) {
-    let gridToRender = [];
-    if(props.squares) {
-        gridToRender = props.squares.map((row, i) => {
-            let toReturn = row.map((square, j) => {
-                return <Square key={i + "_" + j} squareState={square} />
-            })
-
-            return toReturn;
-        })
-        console.log(gridToRender)
-        }
+    if (!(props && props.squares)) {
         return (
-            <div className="grid-container">
-                {
-                    gridToRender
-                }
+            <div>
             </div>
         )
+    }
+    
+    let gridToRender = [];
+    gridToRender = props.squares.map((row, i) => {
+        return  row.map((square, j) => {
+            return <Square key={i + "_" + j} squareState={square} />
+        })
+    })
+    return (
+        <div className="grid-container">
+            {
+                gridToRender
+            }
+        </div>
+    )
 }
 
 export default Grid;

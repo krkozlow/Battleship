@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Battleship.Core.Domain.ValueObjects
@@ -6,7 +7,7 @@ namespace Battleship.Core.Domain.ValueObjects
     public class Grid
     {
         private const int MIN_GRID_SIZE = 2;
-        private SquareState[,] _squares;
+        private SquareState[][] _squares;
         public readonly int _sizeX;
         public readonly int _sizeY;
 
@@ -16,15 +17,27 @@ namespace Battleship.Core.Domain.ValueObjects
 
             _sizeX = sizeX;
             _sizeY = sizeY;
-            _squares = new SquareState[_sizeX, _sizeY];
+            InitializeSquares(sizeX, sizeY);
         }
 
+        private void InitializeSquares(int sizeX, int sizeY)
+        {
+            _squares = new SquareState[sizeX][];
+            for (int i = 0; i < _squares.GetLength(0); i++)
+                _squares[i] = new SquareState[sizeY];
+        }
+        
         public SquareState this[int x, int y]
         {
-            get { return _squares[x, y]; }
-            set { _squares[x, y] = value; }
+            get { return _squares[x][y]; }
+            set { _squares[x][y] = value; }
         }
 
+        public SquareState[][] GetSquares()
+        {
+            return _squares;
+        }
+        
         public (int, int) GetGridSize()
         {
             return (_sizeX, _sizeY);
@@ -37,7 +50,7 @@ namespace Battleship.Core.Domain.ValueObjects
             {
                 for (int j = 0; j < _sizeY; j++)
                 {
-                    builder.Append(_squares[i, j]);
+                    builder.Append(_squares[i][j]);
                 }
 
                 builder.Append(Environment.NewLine);

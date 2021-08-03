@@ -1,3 +1,7 @@
+using Battleship.Api.Model;
+using Battleship.Core.Application;
+using Battleship.Core.Application.Domain;
+using Battleship.Core.Domain;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -20,6 +24,10 @@ namespace battleship_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IBattleshipContext, BattleshipContext>();
+            services.AddSingleton<IGameFactory, TwoPlayerGameFactory>();
+            services.AddSingleton<IPlayerBuilder, PlayerBuilder>();
+            services.AddSingleton<IShipOnGridSquareGenerator, ShipOnGridSquareGenerator>();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory

@@ -7,7 +7,7 @@ function Player(props) {
                 <span>{props.name}</span>
             </div>
             <div>
-                <span>{props.points}</span>
+                <span>{props.score}</span>
             </div>
         </div>
     )

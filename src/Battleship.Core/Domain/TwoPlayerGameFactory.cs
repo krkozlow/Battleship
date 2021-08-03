@@ -19,8 +19,8 @@ namespace Battleship.Core.Domain
 
         public Game Create(int sizeX, int sizeY)
         {
-            var firstPlayer = CreatePlayerBuiler("First player", 10, 10).Build();
-            var secondPlayer = CreatePlayerBuiler("First player", 10, 10).Build();
+            var firstPlayer = CreatePlayerBuiler("First player", sizeX, sizeY).Build();
+            var secondPlayer = CreatePlayerBuiler("Second player", sizeX, sizeY).Build();
 
             return new Game
             {

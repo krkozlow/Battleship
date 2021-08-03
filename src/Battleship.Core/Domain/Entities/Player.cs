@@ -12,6 +12,7 @@ namespace Battleship.Core.Domain.Entities
         private readonly Guid _id;
         private readonly Grid _grid;
         private readonly IList<Ship> _ships;
+        private int _score;
 
         public Player(Guid id, string name, Grid grid)
         {
@@ -49,11 +50,31 @@ namespace Battleship.Core.Domain.Entities
             return shootResult;
         }
 
+        public void UpdateScore()
+        {
+            ++_score;
+        }
+        
         public Guid GetId()
         {
             return _id;
         }
 
+        public string GetName()
+        {
+            return _name;
+        }
+
+        public int GetScore()
+        {
+            return _score;
+        }
+        
+        public SquareState[][] GetSquares()
+        {
+            return _grid?.GetSquares();
+        }
+        
         private bool ShipIsInGrid(Ship ship)
         {
             var shipCoordinates = ship.GetCoordaintes();

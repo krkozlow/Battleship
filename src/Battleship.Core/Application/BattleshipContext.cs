@@ -57,6 +57,10 @@ namespace Battleship.Core.Application
             {
                 NextPlayer();
             }
+            else
+            {
+                _currentPlayer.UpdateScore();
+            }
         }
     }
 }

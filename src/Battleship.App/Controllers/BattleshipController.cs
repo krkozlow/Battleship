@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Battleship.Api.Model;
 using Battleship.Core.Domain.ValueObjects;
 using battleship_app.DTOs;
 using Microsoft.AspNetCore.Mvc;
@@ -10,78 +11,31 @@ namespace battleship_app.Controllers
     [Route("[controller]")]
     public class BattleshipController
     {
-        [HttpPost("StartGame")]
-        public PlayersModel StartGame([FromQuery] int sizeX, [FromQuery] int sizeY)
+        private readonly IBattleshipContext _battleshipContext;
+
+        public BattleshipController(IBattleshipContext battleshipContext)
         {
-            var firstPlayer = new PlayerModel
-            {
-                Id = Guid.NewGuid(),
-                Name = "First player",
-                Grid = new GridModel
-                {
-                    SizeX = 10,
-                    SizeY = 10,
-                    Squares = new[]
-                    {
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
-                    }
-                }
-            };
+            _battleshipContext = battleshipContext;
+        }
+        
+        [HttpPost("StartGame/{sizeX}/{sizeY}")]
+        public IEnumerable<SimplePlayerModel> StartGame([FromRoute] int sizeX, [FromRoute] int sizeY)
+        {
+            _battleshipContext.SetGame(sizeX, sizeY);
 
-            var secondPlayer = new PlayerModel
-            {
-                Id = Guid.NewGuid(),
-                Name = "First player",
-                Grid = new GridModel
-                {
-                    SizeX = 10,
-                    SizeY = 10,
-                    Squares = new[]
-                    {
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
-                    }
-                }
-            };
+            var result = new ContextMapper(_battleshipContext).MapToSimplePlayerModel();
 
-            return new PlayersModel
-            {
-                Players = new []
-                {
-                    firstPlayer,
-                    secondPlayer
-                }
-            };
+            return result;
         }
 
-        [HttpPut("Shoot")]
-        public IActionResult Shoot([FromQuery] int x, [FromQuery] int y)
+        [HttpPut("Shoot/{x}/{y}")]
+        public IEnumerable<PlayerModel> Shoot([FromRoute] int x, [FromRoute] int y)
         {
-            return new OkObjectResult(new PlayerModel
-            {
-                Id = Guid.NewGuid(),
-                Name = "First player",
-                Grid = new GridModel
-                {
-                    SizeX = 10,
-                    SizeY = 10,
-                    Squares = new[]
-                    {
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty},
-                        new []{SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty, SquareState.Empty}
-                    }
-                }
-            });
+            _battleshipContext.Shoot(x, y);
+
+            var result = new ContextMapper(_battleshipContext).MapToPlayerModel();
+
+            return result;
         }
     }
 }
